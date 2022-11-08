@@ -19,13 +19,15 @@ def fetch(url):
 # Requisito 2
 def scrape_novidades(html_content):
     selector = Selector(text=html_content)
-    links = links = selector.css("h2.entry-title a::attr(href)").getall()
+    links = selector.css("h2.entry-title a::attr(href)").getall()
     return links
 
 
 # Requisito 3
 def scrape_next_page_link(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(text=html_content)
+    next_link = selector.css(".next.page-numbers::attr(href)").get()
+    return next_link
 
 
 # Requisito 4
