@@ -1,3 +1,4 @@
+from collections import Counter
 from operator import itemgetter
 
 from tech_news.database import find_news
@@ -12,7 +13,8 @@ def top_5_news():
 
 # Requisito 11
 def top_5_categories():
-    """Seu código deve vir aqui"""
-
-
-top_5_categories()
+    news = find_news()
+    categories = [item["category"] for item in news]
+    count = Counter(categories).most_common(5)
+    sorted_categories = sorted(count, key=lambda x: (-x[1], x[0]))
+    return [category[0] for category in sorted_categories]
