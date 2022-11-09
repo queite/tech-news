@@ -23,12 +23,13 @@ def search_by_date(date):
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    news = search_news({"tags": {"$regex": tag, "$options": "i"}})
+    tuple_list = [(item["title"], item["url"]) for item in news]
+    return tuple_list
 
 
 # Requisito 9
 def search_by_category(category):
-    """Seu código deve vir aqui"""
-
-
-# print(search_by_date("2022-10-28"))
+    news = search_news({"category": {"$regex": category, "$options": "i"}})
+    tuple_list = [(item["title"], item["url"]) for item in news]
+    return tuple_list
